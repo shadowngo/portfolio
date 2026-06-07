@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio – Nguyen Thanh Tam | 25024029</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --primary: #0F6E56;
+      --primary-light: #E1F5EE;
+      --primary-mid: #1D9E75;
+      --accent: #534AB7;
+      --accent-light: #EEEDFE;
+      --amber: #BA7517;
+      --amber-light: #FAEEDA;
+      --text: #1a1a1a;
+      --text-muted: #5F5E5A;
+      --text-light: #888780;
+      --border: #D3D1C7;
+      --surface: #F8F8F5;
+      --white: #fff;
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem
+    }
+
+    .nav {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      background: var(--white);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 8px;
+      position: sticky;
+      top: 0;
+      z-index: 100
+    }
+
+    .nav-btn {
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      border: none;
+      background: transparent;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all .2s;
+      font-weight: 500
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: var(--primary);
+      color: #fff
+    }
+
+    .hero {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 0.5px solid var(--border);
+      padding: 2.5rem;
+      margin-bottom: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+      letter-spacing: .3px
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: .5rem
+    }
+
+    .hero h1 span {
+      color: var(--primary)
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      line-height: 1.6
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted)
+    }
+
+    .meta-item i {
+      color: var(--primary);
+      font-size: 16px
+    }
+
+    .meta-item strong {
+      color: var(--text);
+      font-weight: 500
+    }
+
+    .photo-frame {
+      width: 130px;
+      height: 160px;
+      border-radius: var(--radius);
+      border: 2px dashed var(--primary-mid);
+      background: var(--primary-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: border-color .2s
+    }
+
+    .photo-frame:hover {
+      border-color: var(--primary);
+      background: #d0ede4
+    }
+
+    .photo-frame i {
+      font-size: 32px;
+      color: var(--primary-mid)
+    }
+
+    .photo-frame span {
+      font-size: 11px;
+      color: var(--primary);
+      font-weight: 500;
+      text-align: center;
+      padding: 0 8px
+    }
+
+    #photoInput {
+      display: none
+    }
+
+    .photo-preview {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0
+    }
+
+    .tagline-bar {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: var(--radius);
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .tagline-bar i {
+      color: #fff;
+      font-size: 20px
+    }
+
+    .tagline-bar p {
+      color: #fff;
+      font-size: 14px;
+      font-style: italic;
+      opacity: .95
+    }
+
+    .section {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 0.5px solid var(--border);
+      padding: 2rem;
+      margin-bottom: 1.5rem
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 0.5px solid var(--border)
+    }
+
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0
+    }
+
+    .section-icon.green {
+      background: var(--primary-light);
+      color: var(--primary)
+    }
+
+    .section-icon.purple {
+      background: var(--accent-light);
+      color: var(--accent)
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text)
+    }
+
+    .section-num {
+      font-size: 11px;
+      color: var(--text-light);
+      font-weight: 400;
+      margin-left: auto;
+      background: var(--surface);
+      padding: 2px 8px;
+      border-radius: 50px;
+      border: 0.5px solid var(--border)
+    }
+
+    .assignment-card {
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: box-shadow .2s
+    }
+
+    .assignment-card:hover {
+      box-shadow: 0 2px 12px rgba(0, 0, 0, .06)
+    }
+
+    .assign-header {
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      background: var(--surface)
+    }
+
+    .assign-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0
+    }
+
+    .assign-title {
+      font-weight: 600;
+      font-size: 14px;
+      flex: 1
+    }
+
+    .assign-tag {
+      font-size: 11px;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 2px 8px;
+      border-radius: 50px;
+      font-weight: 500
+    }
+
+    .assign-toggle {
+      font-size: 18px;
+      color: var(--text-light);
+      transition: transform .2s
+    }
+
+    .assign-body {
+      padding: 1.2rem;
+      border-top: 0.5px solid var(--border);
+      display: none;
+      background: var(--white)
+    }
+
+    .assign-body.open {
+      display: block
+    }
+
+    .assign-toggle.open {
+      transform: rotate(180deg)
+    }
+
+    .content-block {
+      margin-bottom: 1rem
+    }
+
+    .content-block:last-child {
+      margin-bottom: 0
+    }
+
+    .content-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      margin-bottom: .4rem
+    }
+
+    .content-block p {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.75
+    }
+
+    .prompt-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: .5rem
+    }
+
+    .prompt-box {
+      border-radius: var(--radius-sm);
+      padding: 1rem
+    }
+
+    .prompt-box.bad {
+      background: #FEF2F2;
+      border: 0.5px solid #F09595
+    }
+
+    .prompt-box .label {
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: .5rem
+    }
+
+    .prompt-box.bad .label {
+      color: #A32D2D
+    }
+
+    .prompt-box.good {
+      background: var(--primary-light);
+      border: 0.5px solid #5DCAA5
+    }
+
+    .prompt-box.good .label {
+      color: var(--primary)
+    }
+
+    .prompt-box code {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      display: block
+    }
+
+    .principle-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: .5rem
+    }
+
+    .principle-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      padding: .8rem 1rem;
+      border: 0.5px solid var(--border)
+    }
+
+    .principle-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px
+    }
+
+    .principle-item p {
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.65
+    }
+
+    .principle-item strong {
+      color: var(--primary)
+    }
+
+    .file-input-area {
+      margin-top: .8rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .file-input-area input[type=text] {
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+      font-size: 12px;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      color: var(--text);
+      background: var(--surface);
+      width: 280px;
+      outline: none
+    }
+
+    .file-input-area input[type=text]:focus {
+      border-color: var(--primary)
+    }
+
+    .file-input-area button {
+      padding: 6px 14px;
+      border: 0.5px solid var(--primary);
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      color: var(--primary);
+      font-weight: 500;
+      cursor: pointer;
+      background: transparent;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      transition: all .2s
+    }
+
+    .file-input-area button:hover {
+      background: var(--primary-light)
+    }
+
+    .saved-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: .5rem;
+      font-size: 12px;
+      color: var(--primary);
+      word-break: break-all;
+      text-decoration: none
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px
+    }
+
+    .lesson-card {
+      border-radius: var(--radius-sm);
+      padding: 1.2rem;
+      border: 0.5px solid var(--border)
+    }
+
+    .lesson-card:nth-child(1) {
+      background: var(--primary-light)
+    }
+
+    .lesson-card:nth-child(2) {
+      background: var(--accent-light)
+    }
+
+    .lesson-card:nth-child(3) {
+      background: var(--amber-light)
+    }
+
+    .lesson-num {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: .3rem
+    }
+
+    .lesson-card:nth-child(1) .lesson-num {
+      color: var(--primary)
+    }
+
+    .lesson-card:nth-child(2) .lesson-num {
+      color: var(--accent)
+    }
+
+    .lesson-card:nth-child(3) .lesson-num {
+      color: var(--amber)
+    }
+
+    .lesson-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: .4rem;
+      color: var(--text)
+    }
+
+    .lesson-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.6
+    }
+
+    .action-plan {
+      margin-top: 1.2rem;
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      padding: 1.2rem;
+      border: 0.5px solid var(--border)
+    }
+
+    .action-plan-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: .8rem
+    }
+
+    .action-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: .6rem
+    }
+
+    .action-item:last-child {
+      margin-bottom: 0
+    }
+
+    .action-item i {
+      color: var(--primary);
+      font-size: 16px;
+      margin-top: 2px;
+      flex-shrink: 0
+    }
+
+    .action-item p {
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.6
+    }
+
+    .closing-quote {
+      text-align: center;
+      padding: 2rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 0.5px solid var(--border);
+      margin-top: 1.5rem
+    }
+
+    .closing-quote p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      font-style: italic;
+      line-height: 1.7
+    }
+
+    .closing-quote span {
+      display: block;
+      margin-top: .8rem;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-style: normal
+    }
+
+    .photo-frame {
+      width: 220px;
+      /* tùy bạn */
+      height: 220px;
+      /* tùy bạn */
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Khi đã có ảnh */
+    .photo-frame.has-image {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* Ẩn icon + chữ khi đã có ảnh (tuỳ bạn) */
+    .photo-frame.has-image i,
+    .photo-frame.has-image span {
+      display: none;
+    }
+
+    @media print {
+      .nav {
+        display: none
+      }
+
+      .assign-body {
+        display: block !important
+      }
+
+      .assign-toggle {
+        display: none
+      }
+    }
+  </style>
+</head>
+
+<section id="about">
+  <!-- Nội dung giới thiệu/hero -->
+</section>
+
+<body>
+  <div class="page">
+    <nav class="nav">
+      <button class="nav-btn active" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+        Giới thiệu
+      </button>
+      <button class="nav-btn" onclick="document.getElementById('assignments').scrollIntoView({behavior:'smooth'})">Bai
+        tap</button>
+      <button class="nav-btn" onclick="document.getElementById('summary').scrollIntoView({behavior:'smooth'})">Tong
+        ket</button>
+    </nav>
+
+    <div class="hero">
+      <div>
+        <div class="hero-badge">Cong nghe Vat lieu - VNU</div>
+        <h1>Nguyen<br><span>Thanh Tam</span></h1>
+        <p class="hero-sub">Sinh vien nam nhat nganh <strong>Cong nghe Vat lieu</strong>, Dai hoc Cong nghe - DHQGHN.
+          Toi tin rang su giao thoa giua vat lieu tien tien va cong nghe so se dinh hinh tuong lai nganh ky thuat.
+          Portfolio nay la hanh trinh dau tien cua toi trong viec xay dung nang luc so - mot hanh trang khong the thieu
+          cua ky su the he moi.</p>
+        <div class="hero-meta">
+          <div class="meta-item"><i class="ti ti-id-badge"></i><span>MSSV: <strong>25024029</strong></span></div>
+          <div class="meta-item"><i class="ti ti-school"></i><span>Lop: <strong>VNU1001_E252020</strong></span></div>
+          <div class="meta-item"><i class="ti ti-calendar"></i><span>Nam hoc: <strong>2024 - 2025</strong></span></div>
+        </div>
+      </div>
+      <div>
+        <div class="photo-frame" id="photoFrame" onclick="document.getElementById('photoInput').click()"
+          title="Nhấn để tải ảnh lên">
+          <i class="ti ti-camera-plus"></i>
+          <span>Nhấn để chèn ảnh của bạn</span>
+        </div>
+
+        <input type="file" id="photoInput" accept="image/*" hidden onchange="handlePhotoUpload(event)">
+      </div>
+    </div>
+
+    <div class="tagline-bar">
+      <i class="ti ti-quote"></i>
+      <p>"Vat lieu tao nen the gioi - nhung con nguoi biet dung cong nghe se tai tao no. Toi chon dung o giao diem do."
+      </p>
+    </div>
+
+    <div class="section" id="assignments">
+      <div class="section-header">
+        <div class="section-icon green"><i class="ti ti-clipboard-list"></i></div>
+        <div>
+          <div class="section-title">Ho so Bai tap Thanh phan</div>
+        </div>
+        <div class="section-num">6 bai tap</div>
+      </div>
+
+      <div class="assignment-card">
+        <div class="assign-header" onclick="toggleAssign(this)">
+          <div class="assign-num">1</div>
+          <div class="assign-title">Thao tac tep va to chuc thu muc</div>
+          <div class="assign-tag">File Management</div>
+          <i class="ti ti-chevron-down assign-toggle"></i>
+        </div>
+        <div class="assign-body">
+          <div class="content-block">
+            <div class="content-label">Phan tich chuyen sau</div>
+            <p>Trong cac du an ky thuat lon - dac biet la khi lam viec nhom hoac quan ly du lieu thi nghiem - viec dat
+              ten tep va to chuc thu muc theo quy chuan khong don thuan la thoi quen gon gang, ma la <strong>yeu to song
+                con cua toan bo workflow</strong>.</p>
+            <p style="margin-top:.6rem">Hay thu tuong tuong: mot nhom 5 nguoi cung lam bao cao thi nghiem ve tinh chat
+              co hoc cua hop kim, moi nguoi luu file theo kieu <code
+                style="background:var(--surface);padding:1px 5px;border-radius:4px;font-size:12.5px">bai nop cuoi.docx</code>
+              hay <code
+                style="background:var(--surface);padding:1px 5px;border-radius:4px;font-size:12.5px">final2_chinh.xlsx</code>.
+              Chi sau 2 tuan, thu muc chung tro thanh mot "me cung so". Nguoc lai, voi quy chuan nhu <code
+                style="background:var(--surface);padding:1px 5px;border-radius:4px;font-size:12.5px">2025-05_baocao_cohocvatchat_v3_NTT.docx</code>,
+              moi thanh vien lap tuc nhan dien duoc ngay tao, noi dung, phien ban va nguoi phu trach.</p>
+            <p style="margin-top:.6rem">Qua bai tap nay, toi da xay dung cho minh nguyen tac <strong>3C</strong>: <em>Co
+                nghia - Cu the - Co the sap xep tu dong</em>. Ten tep tot khong chi phuc vu cho hom nay, ma con la
+              "thong diep gui ve tuong lai" cho chinh minh sau 6 thang.</p>
+          </div>
+          <div class="file-input-area">
+            <i class="ti ti-paperclip" style="color:var(--primary);font-size:16px"></i>
+            <input type="text" id="link1" placeholder="Dan link bai tap (Google Drive, Notion...)">
+            <button onclick="saveLink(1)">Luu link</button>
+          </div>
+          <div id="saved1"></div>
+        </div>
+      </div>
+
+      <div class="assignment-card">
+        <div class="assign-header" onclick="toggleAssign(this)">
+          <div class="assign-num">2</div>
+          <div class="assign-title">Danh gia thong tin hoc thuat</div>
+          <div class="assign-tag">Information Literacy</div>
+          <i class="ti ti-chevron-down assign-toggle"></i>
+        </div>
+        <div class="assign-body">
+          <div class="content-block">
+            <div class="content-label">Quy trinh kiem chung nguon tin cua toi</div>
+            <p>Trong thoi dai ma moi giay co hang nghin bai viet duoc dang tai, kha nang <strong>phan biet thong tin
+                dang tin cay voi thong tin nhieu</strong> la ky nang cot loi cua mot sinh vien khoa hoc. Toi ap dung mo
+              hinh <strong>SIFT</strong> (Stop - Investigate - Find better coverage - Trace claims) ket hop voi bo cau
+              hoi ca nhan.</p>
+            <p style="margin-top:.6rem"><strong>Buoc 1 - Dung lai va nhan dien:</strong> Toi xac dinh tac gia la ai, co
+              chuyen mon trong linh vuc khong, bai dang tren tap chi co uy tin khong (vi du: IEEE, Elsevier, Nature).
+            </p>
+            <p style="margin-top:.4rem"><strong>Buoc 2 - Truy vet nguon goc:</strong> Toi kiem tra phan References. Mot
+              bai viet hoc thuat thieu trich dan hoac trich dan cac blog ca nhan thuong la dau hieu canh bao.</p>
+            <p style="margin-top:.4rem"><strong>Buoc 3 - Doi chieu cheo:</strong> Toi tim it nhat 2-3 nguon doc lap khac
+              co ket luan tuong tu. Neu mot thong tin chi xuat hien o mot noi duy nhat, toi luon dat dau cham hoi.</p>
+            <p style="margin-top:.4rem"><strong>Buoc 4 - Kiem tra tinh cap nhat:</strong> Trong nganh vat lieu, mot ket
+              qua nghien cuu tu 10 nam truoc co the da bi thay the hoan toan boi phuong phap moi hon.</p>
+          </div>
+          <div class="file-input-area">
+            <i class="ti ti-paperclip" style="color:var(--primary);font-size:16px"></i>
+            <input type="text" id="link2" placeholder="Dan link bai tap (Google Drive, Notion...)">
+            <button onclick="saveLink(2)">Luu link</button>
+          </div>
+          <div id="saved2"></div>
+        </div>
+      </div>
+
+      <div class="assignment-card">
+        <div class="assign-header" onclick="toggleAssign(this)">
+          <div class="assign-num">3</div>
+          <div class="assign-title">Ky nang viet Prompt hoc tap</div>
+          <div class="assign-tag">Prompt Engineering</div>
+          <i class="ti ti-chevron-down assign-toggle"></i>
+        </div>
+        <div class="assign-body">
+          <div class="content-block">
+            <div class="content-label">So sanh Prompt - Thuc te tu mon Hoa dai cuong</div>
+            <div class="prompt-compare">
+              <div class="prompt-box bad">
+                <div class="label">x Prompt ban dau (chua hieu qua)</div>
+                <code>"Giai thich lien ket hoa hoc cho toi."</code>
+              </div>
+              <div class="prompt-box good">
+                <div class="label">v Prompt cai tien (hieu qua cao)</div>
+                <code>"Toi la sinh vien nam nhat nganh Cong nghe Vat lieu, dang hoc ve lien ket hoa hoc. Hay giai thich su khac biet giua lien ket ion, cong hoa tri va kim loai bang cach so sanh tinh chat co hoc cua vat lieu tao thanh tu moi loai lien ket. Dung vi du cu the (NaCl, diamond, nhom). Cuoi cung cho toi 2 cau hoi tu kiem tra."</code>
+              </div>
+            </div>
+          </div>
+          <div class="content-block">
+            <div class="content-label">Phan tich tai sao Prompt cai tien hieu qua hon</div>
+            <p>Prompt ban dau qua mo ho - AI khong biet toi la ai, can do sau nao, hay muon ung dung vao linh vuc nao.
+              Ket qua nhan duoc se la mot bai giai thich chung chung, khong khac gi Wikipedia.</p>
+            <p style="margin-top:.5rem">Prompt cai tien hieu qua vi no cung cap du <strong>4 yeu to vang</strong>: (1)
+              <em>Boi canh</em> - toi la sinh vien nganh gi; (2) <em>Nhiem vu cu the</em> - so sanh, khong chi giai
+              thich; (3) <em>Rang buoc format</em> - dung vi du NaCl, diamond, nhom; (4) <em>Hanh dong mong muon</em> -
+              cau hoi tu kiem tra. AI duoc "neo" vao dung ngu canh, tu do tao ra noi dung truc tiep huu ich cho viec
+              hoc.
+            </p>
+          </div>
+          <div class="file-input-area">
+            <i class="ti ti-paperclip" style="color:var(--primary);font-size:16px"></i>
+            <input type="text" id="link3" placeholder="Dan link bai tap (Google Drive, Notion...)">
+            <button onclick="saveLink(3)">Luu link</button>
+          </div>
+          <div id="saved3"></div>
+        </div>
+      </div>
+
+      <div class="assignment-card">
+        <div class="assign-header" onclick="toggleAssign(this)">
+          <div class="assign-num">4</div>
+          <div class="assign-title">Hop tac truc tuyen hieu qua</div>
+          <div class="assign-tag">Online Collaboration</div>
+          <i class="ti ti-chevron-down assign-toggle"></i>
+        </div>
+        <div class="assign-body">
+          <div class="content-block">
+            <div class="content-label">He thong quan ly nhom cua toi</div>
+            <p>Trong bai tap nhom hoc ky dau, toi nhan ra rang su that bai cua nhieu nhom khong den tu viec thieu kien
+              thuc, ma tu <strong>thieu he thong phoi hop</strong>. Toi de xuat nhom dung ket hop <strong>Notion +
+                Zalo</strong> theo mo hinh phan tang.</p>
+            <p style="margin-top:.6rem"><strong>Cau truc Notion:</strong> Toi tao mot workspace chung voi 4 khu vuc: (1)
+              <em>Kanban board</em> chia viec theo trang thai To-do / In Progress / Done; (2) <em>Timeline</em> gan
+              deadline cu the cho tung dau viec; (3) <em>Tai nguyen chung</em> luu tat ca link tham khao, tep chia se;
+              (4) <em>Meeting notes</em> ghi lai bien ban moi buoi hop online.
+            </p>
+            <p style="margin-top:.6rem"><strong>Quy tac nhom:</strong> Moi thanh vien phai cap nhat trang thai cong viec
+              it nhat 1 lan/ngay. Zalo chi dung cho thong bao khan va hoi nhanh - moi quyet dinh quan trong duoc ghi vao
+              Notion de co audit trail. Nho he thong nay, nhom toi hoan thanh bai dung han va khong xay ra tinh trang
+              "trung viec" hay "bo sot".</p>
+          </div>
+          <div class="file-input-area">
+            <i class="ti ti-paperclip" style="color:var(--primary);font-size:16px"></i>
+            <input type="text" id="link4" placeholder="Dan link bai tap (Google Drive, Notion...)">
+            <button onclick="saveLink(4)">Luu link</button>
+          </div>
+          <div id="saved4"></div>
+        </div>
+      </div>
+
+      <div class="assignment-card">
+        <div class="assign-header" onclick="toggleAssign(this)">
+          <div class="assign-num">5</div>
+          <div class="assign-title">AI tao noi dung va ban sac ca nhan</div>
+          <div class="assign-tag">AI + Creativity</div>
+          <i class="ti ti-chevron-down assign-toggle"></i>
+        </div>
+        <div class="assign-body">
+          <div class="content-block">
+            <div class="content-label">Trai nghiem thuc te</div>
+            <p>Khi duoc giao lam bai thuyet trinh ve "Vat lieu nano trong y sinh hoc", toi quyet dinh thu nghiem quy
+              trinh ket hop AI - con nguoi mot cach co chu dich. Toi dung <strong>ChatGPT</strong> de tao khung noi dung
+              ban dau va goi y cac goc nhin toi chua nghi toi. Sau do, toi dung <strong>Canva AI</strong> de phac thao
+              layout slide dau tien.</p>
+            <p style="margin-top:.6rem">Dieu toi nhan ra: AI rat gioi tao ra <em>bo xuong</em> - cau truc logic, danh
+              sach y, hinh anh minh hoa. Nhung <em>linh hon</em> cua bai - quan diem ca nhan, vi du lien he voi Viet
+              Nam, cau chuyen dan dat mo dau - chi co the den tu toi. Neu khong co buoc nay, bai thuyet trinh chi la
+              "thong tin dung nhung khong co nguoi".</p>
+            <p style="margin-top:.6rem">Toi lap quy tac cho ban than: <strong>AI = 30% cong viec tao khung + 70% tu duy
+                va sac thai ca nhan</strong>. Ket qua la bai thuyet trinh vua chuyen nghiep ve cau truc, vua mang dam
+              dau an rieng ma giang vien co the nhan ra ngay day la san pham cua Thanh Tam.</p>
+          </div>
+          <div class="file-input-area">
+            <i class="ti ti-paperclip" style="color:var(--primary);font-size:16px"></i>
+            <input type="text" id="link5" placeholder="Dan link bai tap (Google Drive, Notion...)">
+            <button onclick="saveLink(5)">Luu link</button>
+          </div>
+          <div id="saved5"></div>
+        </div>
+      </div>
+
+      <div class="assignment-card">
+        <div class="assign-header" onclick="toggleAssign(this)">
+          <div class="assign-num">6</div>
+          <div class="assign-title">Su dung AI co trach nhiem</div>
+          <div class="assign-tag">AI Ethics</div>
+          <i class="ti ti-chevron-down assign-toggle"></i>
+        </div>
+        <div class="assign-body">
+          <div class="content-block">
+            <div class="content-label">Bo 3 Nguyen tac Dao duc ca nhan</div>
+            <div class="principle-list">
+              <div class="principle-item">
+                <div class="principle-num">1</div>
+                <p><strong>Nguyen tac Minh bach nguon goc:</strong> Khi AI ho tro mot phan dang ke trong bai lam, toi se
+                  luon ghi chu ro rang phan nao duoc AI ho tro va phan nao la tu duy doc lap cua minh. Toi khong coi
+                  viec dung AI la dieu can giau diem - nhung su minh bach chinh la su ton trong voi giang vien va voi
+                  chinh minh.</p>
+              </div>
+              <div class="principle-item">
+                <div class="principle-num">2</div>
+                <p><strong>Nguyen tac Kiem chung truoc khi tin:</strong> Toi khong bao gio nop bai chi dua tren output
+                  truc tiep tu AI ma khong kiem tra lai. AI co the tao ra thong tin nghe rat thuyet phuc nhung thuc ra
+                  sai. Dac biet trong nganh khoa hoc, mot con so sai hay mot trich dan gia tao co the gay hai nghiem
+                  trong cho chat luong hoc thuat.</p>
+              </div>
+              <div class="principle-item">
+                <div class="principle-num">3</div>
+                <p><strong>Nguyen tac Khong thay the tu duy:</strong> Toi dung AI de <em>mo rong</em> kha nang tu duy,
+                  khong de <em>thay the</em> no. Neu toi dung AI de lam bai thay minh suy nghi, toi dang tu cuop di co
+                  hoi hoc cua chinh minh - va se la ky su rong kien thuc trong tuong lai. AI la cong cu, khong phai
+                  nguoi hoc thay toi.</p>
+              </div>
+            </div>
+          </div>
+          <div class="file-input-area">
+            <i class="ti ti-paperclip" style="color:var(--primary);font-size:16px"></i>
+            <input type="text" id="link6" placeholder="Dan link bai tap (Google Drive, Notion...)">
+            <button onclick="saveLink(6)">Luu link</button>
+          </div>
+          <div id="saved6"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="summary">
+      <div class="section-header">
+        <div class="section-icon purple"><i class="ti ti-star"></i></div>
+        <div>
+          <div class="section-title">Tong ket va Hanh trinh phat trien</div>
+        </div>
+      </div>
+      <div class="content-block">
+        <div class="content-label">Cam nhan ve qua trinh thuc hien</div>
+        <p>Khi bat dau du an Portfolio nay, toi nghi day chi la mot bai tap nop de lay diem. Nhung khi ngoi lai va thuc
+          su suy nghi ve tung muc, toi nhan ra day la lan dau tien trong cuoc doi sinh vien toi duoc nhin lai <em>toan
+            bo hanh trinh hoc tap cua minh nhu mot thuc the thong nhat</em> - khong phai tung bai rieng le, ma la mot
+          buc tranh lon ve nang luc so dang hinh thanh.</p>
+        <p style="margin-top:.6rem">Qua trinh thuc hien 6 bai tap thanh phan khong chi la hoan thanh nhiem vu - moi bai
+          la mot tam guong nho, phan chieu lai cach toi dang tu duy, lam viec va dat cau hoi. Toi dac biet bat ngo khi
+          nhan ra rang <strong>ky nang so va ky nang tu duy phan bien khong the tach roi nhau</strong> - biet dung cong
+          cu ma khong biet suy nghi doc lap chi tao ra "robot thao tac nhanh", chu khong phai ky su thuc thu.</p>
+        <p style="margin-top:.6rem">Portfolio nay con day toi mot bai hoc ve <em>su trung thuc tri tue</em>: khong phai
+          luc nao toi cung co cau tra loi hoan hao, va viec thua nhan dieu do roi tim cach cai thien chinh la ban chat
+          cua hoc thuat. Mot sinh vien gioi khong phai la nguoi khong mac loi - ma la nguoi biet nhin nhan loi va he
+          thong hoa cach khong lap lai.</p>
+      </div>
+      <div style="margin-top:1.5rem">
+        <div class="content-label">3 Bai hoc lon</div>
+        <div class="lesson-grid">
+          <div class="lesson-card">
+            <div class="lesson-num">01</div>
+            <div class="lesson-title">He thong hoa &gt; Sien nang don thuan</div>
+            <div class="lesson-desc">Lam viec cham chi khong du - phai lam viec theo he thong. Tu to chuc file den quan
+              ly nhom, cau truc tot nhan len hieu qua gap nhieu lan.</div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-num">02</div>
+            <div class="lesson-title">AI la don bay, khong phai thang may</div>
+            <div class="lesson-desc">AI giup toi di nhanh hon, nhung toi van phai biet minh dang di dau. Tu duy phe phan
+              la thu khong AI nao thay the duoc.</div>
+          </div>
+          <div class="lesson-card">
+            <div class="lesson-num">03</div>
+            <div class="lesson-title">Ky nang so la nen tang ky thuat</div>
+            <div class="lesson-desc">Ky su vat lieu tuong lai se can biet code, dung du lieu va hop tac so khong kem gi
+              hieu cau truc tinh the.</div>
+          </div>
+        </div>
+      </div>
+      <div class="action-plan">
+        <div class="action-plan-title">Ke hoach hanh dong cu the</div>
+        <div class="action-item"><i class="ti ti-arrow-right"></i>
+          <p><strong>Hoc ky 2:</strong> Hoan thanh khoa Python co ban va bat dau ung dung vao xu ly du lieu thi nghiem
+            vat lieu (phan tich XRD, SEM).</p>
+        </div>
+        <div class="action-item"><i class="ti ti-arrow-right"></i>
+          <p><strong>Nam 2:</strong> Tham gia it nhat 1 du an nghien cuu khoa hoc sinh vien cap truong de xay dung
+            portfolio ky thuat thuc chat.</p>
+        </div>
+        <div class="action-item"><i class="ti ti-arrow-right"></i>
+          <p><strong>Lien tuc:</strong> Duy tri thoi quen doc 1 bai bao khoa hoc/tuan tren Google Scholar, ap dung quy
+            trinh kiem chung thong tin da hoc.</p>
+        </div>
+        <div class="action-item"><i class="ti ti-arrow-right"></i>
+          <p><strong>Dai han:</strong> Xay dung personal brand trong linh vuc vat lieu tien tien - bat dau bang viec
+            chia se kien thuc tren LinkedIn tu nam 3.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="closing-quote">
+      <p>"Hoc khong chi la tich luy kien thuc - do la qua trinh khong ngung tai cau truc ban than. Portfolio nay khong
+        phai diem den, ma la buoc dau tien tren hanh trinh dai hon."</p>
+      <span>-- Nguyen Thanh Tam, VNU 2025</span>
+    </div>
+  </div>
+
+  <script>
+    // Hàm đóng/mở thẻ bài tập
+    function toggleAssign(header) {
+      var body = header.nextElementSibling;
+      var icon = header.querySelector('.assign-toggle');
+      body.classList.toggle('open');
+      icon.classList.toggle('open');
+    }
+
+    // Hàm tải ảnh cá nhân lên
+    document.getElementById('photoInput').addEventListener('change', function (e) {
+      var file = e.target.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function (ev) {
+        var frame = document.getElementById('photoFrame');
+        var img = frame.querySelector('.photo-preview');
+        if (!img) { img = document.createElement('img'); img.className = 'photo-preview'; frame.appendChild(img); }
+        img.src = ev.target.result;
+        frame.querySelector('i').style.display = 'none';
+        frame.querySelector('span').style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Hàm lưu link bài tập
+    function saveLink(n) {
+      var val = document.getElementById('link' + n).value.trim();
+      var saved = document.getElementById('saved' + n);
+      if (!val) { saved.innerHTML = ''; return; }
+      saved.innerHTML = '<a class="saved-link" href="' + val + '" target="_blank"><i class="ti ti-external-link" style="font-size:13px"></i> ' + val + '</a>';
+    }
+
+    // ==========================================
+    // ĐOẠN CODE THÊM VÀO ĐỂ SỬA LỖI "KẸT" MENU:
+    // ==========================================
+    window.addEventListener('scroll', function () {
+      var buttons = document.querySelectorAll('.nav-btn');
+      var heroSection = document.querySelector('.hero');
+      var assignmentsSection = document.getElementById('assignments');
+      var summarySection = document.getElementById('summary');
+
+      var scrollPos = window.scrollY || document.documentElement.scrollTop;
+      // Thêm một khoảng bù (offset) nhỏ để kích hoạt màu sớm hơn khi vừa cuộn tới phần đó
+      var offset = 150;
+
+      // Xóa class active ở tất cả các nút trước
+      buttons.forEach(function (btn) { btn.classList.remove('active'); });
+
+      // Kiểm tra vị trí cuộn để bật active đúng nút
+      if (scrollPos >= summarySection.offsetTop - offset) {
+        buttons[2].classList.add('active'); // Nút Tổng kết
+      } else if (scrollPos >= assignmentsSection.offsetTop - offset) {
+        buttons[1].classList.add('active'); // Nút Bài tập
+      } else {
+        buttons[0].classList.add('active'); // Nút Giới thiệu (Mặc định ở trên cùng)
+      }
+    });
+  </script>
+  <script>
+    function handlePhotoUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      // Chỉ nhận ảnh
+      if (!file.type.startsWith('image/')) {
+        alert('Vui lòng chọn file ảnh (JPG/PNG/WebP).');
+        return;
+      }
+
+      const frame = document.getElementById('photoFrame');
+
+      // Cách 1: Dùng Object URL (nhanh, đơn giản)
+      const url = URL.createObjectURL(file);
+
+      frame.style.backgroundImage = `url('${url}')`;
+      frame.classList.add('has-image');
+
+      // (tuỳ chọn) lưu vào localStorage để F5 vẫn còn ảnh
+      // -> cách này lưu base64, file lớn có thể nặng
+      const reader = new FileReader();
+      reader.onload = () => {
+        try { localStorage.setItem('portfolioPhoto', reader.result); } catch (e) { }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // (tuỳ chọn) tự load lại ảnh đã lưu khi mở trang
+    (function restorePhoto() {
+      const saved = localStorage.getItem('portfolioPhoto');
+      if (!saved) return;
+      const frame = document.getElementById('photoFrame');
+      frame.style.backgroundImage = `url('${saved}')`;
+      frame.classList.add('has-image');
+    })();
+  </script>
